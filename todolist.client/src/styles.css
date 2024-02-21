@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+
+.titles {
+  font-family: "Fredoka", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+.text {
+  font-family: "Fredoka", sans-serif;
+}

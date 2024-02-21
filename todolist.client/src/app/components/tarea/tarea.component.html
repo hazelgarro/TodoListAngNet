@@ -1,0 +1,84 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="cool-lg-8">
+      <div class="">
+        <div class="">
+          <h3 class="titles">To Do List</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="cool-lg-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="titles">{{ accion | uppercase }} TAREA</h5>
+          <form [formGroup]="form" (ngSubmit)="guardarTarea()" class="text">
+            <div class="input-group input-group-lg mb-3 mt-3">
+              <span class="input-group-text">
+              <i class="fa-solid fa-hashtag"
+                 [class.green-icon]="this.form.get('id')?.valid"
+                 [class.red-icon]="this.form.get('id')?.invalid && this.form.get('id')?.touched"></i>
+                </span> <!--si el campo es valido cambia de color verde, si no es rojo pero pasa despues de que el usuario toca el input-->
+              <input formControlName="id" type="text" class="form-control" placeholder="id">
+            </div>
+            <div class="input-group input-group-lg mb-3">
+              <span class="input-group-text"><i class="fa-solid fa-pen-nib"
+              [class.green-icon]="this.form.get('nombre')?.valid"
+              [class.red-icon]="this.form.get('nombre')?.invalid && this.form.get('nombre')?.touched"></i></span>
+              <input formControlName="nombre" maxlength="30" type="text" class="form-control" placeholder="nombre">
+            </div>
+            <div class="input-group input-group-lg mb-3">
+              <span class="input-group-text"><i class="fa-solid fa-quote-left"
+              [class.green-icon]="this.form.get('descripcion')?.valid"
+              [class.red-icon]="this.form.get('descripcion')?.invalid && this.form.get('descripcion')?.touched"
+              ></i></span>
+              <input formControlName="descripcion" maxlength="50" type="text" class="form-control" placeholder="descripcion">
+            </div>
+            <div class="input-group input-group-lg mb-3">
+              <span class="input-group-text"><i class="fa-solid fa-question"
+               [class.green-icon]="this.form.get('estado')?.valid"
+               [class.red-icon]="this.form.get('estado')?.invalid && this.form.get('estado')?.touched"></i></span>
+              <input formControlName="estado" maxlength="1"  type="text" class="form-control" placeholder="estado">
+            </div>
+            <div class="d-grid gap-2">
+              <button [disabled]="this.form.invalid" type="submit" class="btn btn-success btn-lg"><i class="fa-solid fa-database"></i>&nbsp; Agregar</button> <!--&nbsp; es para dar espacio entre la palabra e icono-->
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="mt-5">
+      <div class="cool-lg-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="titles">LISTA DE TAREAS</h5>
+            <table class="table mt-3">
+              <thead>
+                <tr class="text">
+                  <th scope="col" >ID</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col">Edit</th>
+                  <th scope="col">Delete</th>
+                </tr>
+              </thead>
+              <tbody class="text">
+                <tr *ngFor="let tarea of listaTareas">
+                  <!--Itera de forma dinamica las tareas de tarea.components.ts-->
+                  <td>{{ tarea.id }}</td>
+                  <td>{{ tarea.nombre }}</td>
+                  <td>{{ tarea.descripcion }}</td>
+                  <td>{{ tarea.estado }}</td>
+                  <td><i (click)="editarTarea(tarea)" class="far fa-solid fa-pen-to-square text-info"></i></td>
+                  <td><i (click)="eliminarTarea(tarea.id)" class="far fa-solid fa-trash text-danger"></i></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
